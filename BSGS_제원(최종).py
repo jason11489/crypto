@@ -95,3 +95,7 @@ print(bsgs(2, 61, 101))
 print(bsgs(11, 12, 1009))
 
 print(bsgs(2, 399, 773))
+
+
+for i in range(100):
+    print("hi")
