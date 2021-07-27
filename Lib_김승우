@@ -113,10 +113,47 @@ def order(g,p):
         if mns(g,i,p)==1:
             return i
 def is_prime(p):
-    for i in range(2,int(math.sqrt(p))):
+    if p == 2:
+        return True
+    if p%2 ==0:
+        return False
+    for i in range(2,int(math.sqrt(p))+1):
         if p%i == 0:
             return False
     return True
 
+
+def chinese_remainder(A, M):
+    total_M = 1
+    for j in M:
+        total_M *= j
+    x = 0
+    for i in range(len(A)):
+        sub_M = total_M/M[i]
+        sub_a = inverse(sub_M,M[i])
+        x += sub_a*sub_M*A[i]
+    x = x%total_M
+    return x
+
+def factor(N):
+    list =[]
+    for i in range(2,int(math.sqrt(N+1))):
+        if is_prime(i):
+            sub_num = 0
+            sub_N = N
+            while 1:
+                if sub_N%i != 0:
+                    break
+                sub_N = int(sub_N/i)
+                sub_num+=1
+            if N%i ==0:
+                list.append((i,sub_num))
+
+    if len(list)==0:
+        list.append((N,1))
+    return list
+
+
 if __name__=="__main__":
-    print(random_prime(100,200))
+    print("===================")
+    print(factor(8100))
