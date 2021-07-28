@@ -12,8 +12,7 @@ def show_list (L):
 def dlp_power_ord(gen,target,P,mod):#P = [p,n]
     h = target
     g = DLP_pollard_rho.power_mod_naive(gen,P[0]**(P[1]-1),mod)
-    g_inv = DLP_pollard_rho.inverse(g,mod)
-    #print("g*g_inv = {}".format((g*g_inv)%mod))
+    g_inv = DLP_pollard_rho.inverse(gen,mod)
     x = 0
     for i in range (0,P[1]):
         h = (target*DLP_pollard_rho.power_mod_naive(g_inv,x,mod))%mod
